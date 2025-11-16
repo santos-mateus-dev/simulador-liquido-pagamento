@@ -16,48 +16,78 @@ function toggleMenu(event) {
     }
 }
 
+/*
+    -Calcula o valor de contribuição do INSS do colaborador com base na tabela progressiva;
+    -Referência: Tabela INSS 2025 - Salário mínimo R$ 1.518,00.
+*/
 function calcularInss() {
+
+    const tetoInss = 8157.41; //Teto da tabela do INSS que definirá o máximo a ser descontado.
+    let inssADescontar;
+
+    //Leitura e preparação do salário bruto.
     let salarioBruto = parseFloat(document.getElementById('salario-bruto').value);
     salarioBruto *= 1000;
 
-    if (salarioBruto <= 1412) {
-        return salarioBruto * 0.075;
-    } else if (salarioBruto > 1412 && salarioBruto <= 2666.68) {
-        return (salarioBruto * 0.09) - 21.18;
-    } else if (salarioBruto > 2666.68 && salarioBruto <= 4000.03) {
-        return (salarioBruto * 0.12) - 101.18;
-    } else if (salarioBruto > 4000.03 && salarioBruto < 7786.03) {
-        return (salarioBruto * 0.14) - 181.18;
+    //Lógica do cálculo simplificada.
+    if (salarioBruto <= 1518) {
+        inssADescontar = salarioBruto * 0.075;
+    } else if (salarioBruto <= 2793.88) {
+        inssADescontar = (salarioBruto * 0.09) - 22.77;
+    } else if (salarioBruto <= 4190.83) {
+        inssADescontar = (salarioBruto * 0.12) - 106.59;
+    } else if (salarioBruto <= tetoInss) {
+        inssADescontar = (salarioBruto * 0.14) - 190.40;
     } else {
-        return 908.86; 
+        inssADescontar = 951.64; //Valor máximo com base no teto de contribuição.
     }
 
+    return parseFloat(inssADescontar.toFixed(2));
 }
 
+/*
+    -Calcula o valor de contribuição do IRRF do colaborador com base na tabela progressiva;
+    -Referência: Medida Provisória 1.294/2025 - Valor por dependenre R$ 189,59.
+*/
+
 function calcularIrrf() {
+
+    //Variáveis diversas
+    const valorDependente = 189.59;
+    const limiteIsencaoMes = 10.00;
+    let irrfADescontar;
+
+    //Leitura do valor do salario bruto e dependentes.
     let salarioBruto = parseFloat(document.getElementById('salario-bruto').value);
     salarioBruto *= 1000;
-    const dependentes = document.getElementById('dependentes').value;
-    const deducaoDependenteIrrf = dependentes * 189.59;
-    const baseIrrf = salarioBruto - calcularInss() - deducaoDependenteIrrf;
-    
 
-    if (baseIrrf <= 2259.20) {
-        return baseIrrf * 0;
-    } else if (baseIrrf > 2259.20 && baseIrrf <= 2826.65) {
-        // SE VALOR DE IRRF FOR MENOR QUE R$ 10,00, CONTRIBUINTE FICA ISENTO DO PAGAMENTO NO MÊS (Artigo 67 da Lei nº 9.430/1996).
-        if (((baseIrrf * 0.075) - 169.44) <= 10.00) {
-            return 0;
-        }else {
-            return (baseIrrf * 0.075) - 169.44;
-        };
-    } else if (baseIrrf > 2826.65 && baseIrrf <= 3751.05) {
-        return (baseIrrf * 0.15) - 381.44;
-    } else if (baseIrrf > 3751.05 && baseIrrf < 4664.68) {
-        return (baseIrrf * 0.225) - 662.77;
+    const dependentes = document.getElementById('dependentes').value;
+
+    //Expressões para Base de Cálculo do imposto.
+    const deducaoDependenteIrrf = dependentes * valorDependente;
+    const baseIrrf = salarioBruto - calcularInss() - deducaoDependenteIrrf;
+
+    //Lógica do cálculo de IRRF
+    if (baseIrrf <= 2428.80) {
+        irrfADescontar = 0;
+    } else if (baseIrrf <= 2826.65) {
+        // Se valor de IRRF for menor que R$ 10,00, contribuinte fica isento do desconto naquele mês (Artigo 67 da Lei nº 9.430/1996).
+        let irrfCalculado = (baseIrrf * 0.075) - 169.44;
+
+        if (irrfCalculado < limiteIsencaoMes) { // Deve ser menor que R$ 10,00.
+            irrfADescontar = 0;
+        } else {
+            irrfADescontar = irrfCalculado;
+        }
+    } else if ( baseIrrf <= 3751.05) {
+        irrfADescontar = (baseIrrf * 0.15) - 394.16;
+    } else if (baseIrrf <= 4664.68) {
+        irrfADescontar = (baseIrrf * 0.225) - 675.49;
     } else {
-        return (baseIrrf * 0.275) - 896;       
+        irrfADescontar = (baseIrrf * 0.275) - 908.73;       
     }
+
+    return parseFloat(irrfADescontar.toFixed(2));
 }
 
 formulario.addEventListener('submit', event => {
@@ -72,7 +102,7 @@ formulario.addEventListener('submit', event => {
     //REMOVE "ESCONDIDO" DA TABELA
     document.getElementById('resultado').classList.remove('hidden');
 
-    // CÁLCULOS: TOTAL DE DESCONTOS, VALOR LÍQUIDO, ALÍQUOTA REAL INSS E IRRF
+    // CÁLCULOS: TOTAL DE DESCONTOS, VALOR LÍQUIDO, Percentual sobre INSS E IRRF
     const aliquotaInss = (calcularInss() / salarioBruto) / 10;
     const aliquotaIrrf = (calcularIrrf() / salarioBruto) / 10;
     const totalDescontos = parseFloat(descontos) + calcularInss() + calcularIrrf();
