@@ -102,6 +102,8 @@ formulario.addEventListener('submit', event => {
     //REMOVE "ESCONDIDO" DA TABELA
     document.getElementById('resultado').classList.remove('hidden');
 
+    document.getElementById('img').classList.add('hidden');
+
     // CÁLCULOS: TOTAL DE DESCONTOS, VALOR LÍQUIDO, Percentual sobre INSS E IRRF
     const aliquotaInss = (calcularInss() / salarioBruto) / 10;
     const aliquotaIrrf = (calcularIrrf() / salarioBruto) / 10;
