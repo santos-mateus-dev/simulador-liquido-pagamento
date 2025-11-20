@@ -28,7 +28,7 @@
 }
 
 a {
-  color: #01949a;
+  color: #db1f48;
   text-decoration: none;
   font-family: sans-serif
 }
@@ -151,6 +151,51 @@ main {
   display: none;
 }
 
+.resultado-container {
+    /*font-family: Arial, sans-serif;*/
+    max-width: 400px;
+    line-height: 1.6;
+    color: #d9d9d9;
+    margin-right: auto;
+    margin-right: 20px;
+}
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.grupo {
+    margin-bottom: 20px;
+}
+
+.titulo-proventos {
+    color: #01949a;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.titulo-descontos {
+    color: #db1f48;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.liquido-pagar {
+    background-color: rgba(24, 154, 180, 1);
+    padding: 6px 10px;
+    font-size: 18px;
+    font-weight: bold;
+    width: fit-content;
+    margin-bottom: 15px;
+}
+
+.texto-referencia {
+    font-weight: bold;
+    color: #fff;
+}
+
+/*
 #resultado {
   color: #d9d9d9;
   text-align: center;
@@ -198,6 +243,7 @@ tfoot td {
   background-color: #01949a;
 }
 
+*/
 
 footer {
   height: 60px;

@@ -70,9 +70,29 @@
                 <img src="img/ilustracao1.png" alt="Pessoa calculando">
             </section>
         </div>
-        <div id="resultado" class="hidden">
+        <div id="resultado-container" class="hidden">
+
             <h2 id="resultado">Resultado</h2>
-            <table >
+
+            <div class="grupo">
+                <h3 class="titulo-proventos">Proventos <span id="total-proventos"></span></h3>
+                <p><strong>Salário Bruto: </strong><span id="salario"></span></p>
+                <p><strong>Benefícios: </strong><span id="beneficios"></span></p>
+            </div>
+
+            <div class="grupo">
+                <h3 class="titulo-descontos">Descontos <span id="total-descontos"></span></h3>
+                <p><strong>INSS: </strong><span id="valor-inss"></span></p>
+                <p><strong>IRRF: </strong><span id="valor-irrf"></span></p>
+                <p><strong>Outros: </strong><span id="outros-descontos"></span></p>
+            </div>
+
+            <div>
+                <strong>Líquido a pagar: <span id="liquido-pagar"></span></strong>
+            </div>
+
+            <p class="texto-referencia">Ano Referência 2025</p>
+            <!--<table >
                 <caption>
                     Resultado líquido de pagamento - ano referência: 2025
                 </caption>
@@ -121,7 +141,7 @@
                         <td id="liquido"></td>
                     </tr>
                 </tfoot>        
-            </table>
+            </table>-->
         </div>
         
         <script src="script.js"></script>

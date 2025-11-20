@@ -100,13 +100,13 @@ formulario.addEventListener('submit', event => {
     const salarioBruto = parseFloat(salario);  
     
     //REMOVE "ESCONDIDO" DA TABELA
-    document.getElementById('resultado').classList.remove('hidden');
+    document.getElementById('resultado-container').classList.remove('hidden');
 
     document.getElementById('img').classList.add('hidden');
 
     // CÁLCULOS: TOTAL DE DESCONTOS, VALOR LÍQUIDO, Percentual sobre INSS E IRRF
-    const aliquotaInss = (calcularInss() / salarioBruto) / 10;
-    const aliquotaIrrf = (calcularIrrf() / salarioBruto) / 10;
+    /*const aliquotaInss = (calcularInss() / salarioBruto) / 10;
+    const aliquotaIrrf = (calcularIrrf() / salarioBruto) / 10;*/
     const totalDescontos = parseFloat(descontos) + calcularInss() + calcularIrrf();
 
     function calcularLiquido() {
@@ -119,18 +119,18 @@ formulario.addEventListener('submit', event => {
     // INCLUSÃO DE INFORMAÇÕES NA TABELA
     document.getElementById('salario').textContent = (salarioBruto * 1000).toLocaleString('pt-br', {minimumFractionDigits: 2});
 
-    document.getElementById('tabela-descontos').textContent = parseFloat(descontos).toLocaleString('pt-br', {minimumFractionDigits: 2});
+    document.getElementById('total-proventos').textContent = (salarioBruto * 1000).toLocaleString('pt-br', {minimumFractionDigits: 2});
+    /*document.getElementById('tabela-descontos').textContent = parseFloat(descontos).toLocaleString('pt-br', {minimumFractionDigits: 2});*/
     
-    document.getElementById('aliquota-inss').textContent = aliquotaInss.toFixed(2).replace('.', ',') + '%';
+    document.getElementById('total-descontos').textContent = totalDescontos.toLocaleString('pt-br', {minimumFractionDigits: 2});
+
+    /*document.getElementById('aliquota-inss').textContent = aliquotaInss.toFixed(2).replace('.', ',') + '%';*/
     document.getElementById('valor-inss').textContent = calcularInss().toLocaleString('pt-br', {minimumFractionDigits: 2});
     
-    document.getElementById('aliquota-irrf').textContent = aliquotaIrrf.toFixed(2).replace('.', ',') + '%';
+    /*document.getElementById('aliquota-irrf').textContent = aliquotaIrrf.toFixed(2).replace('.', ',') + '%';*/
     document.getElementById('valor-irrf').textContent = calcularIrrf().toLocaleString('pt-br', {minimumFractionDigits: 2});
     
-    document.getElementById('total-proventos').textContent = (salarioBruto * 1000).toLocaleString('pt-br', {minimumFractionDigits: 2});
-    document.getElementById('total-descontos').textContent = totalDescontos.toLocaleString('pt-br', {minimumFractionDigits: 2});
-    
-    document.getElementById('liquido').textContent = calcularLiquido().toLocaleString('pt-br', {minimumFractionDigits: 2});
+    document.getElementById('liquido-pagar').textContent = calcularLiquido().toLocaleString('pt-br', {minimumFractionDigits: 2});
     
 }
 )
