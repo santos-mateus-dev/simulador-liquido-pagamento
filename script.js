@@ -128,7 +128,11 @@ formulario.addEventListener('submit', event => {
     document.getElementById('valor-inss').textContent = calcularInss().toLocaleString('pt-br', {minimumFractionDigits: 2});
     
     /*document.getElementById('aliquota-irrf').textContent = aliquotaIrrf.toFixed(2).replace('.', ',') + '%';*/
-    document.getElementById('valor-irrf').textContent = calcularIrrf().toLocaleString('pt-br', {minimumFractionDigits: 2});
+    if(calcularIrrf() > 0) {
+        document.getElementById('valor-irrf').textContent = calcularIrrf().toLocaleString('pt-br', {minimumFractionDigits: 2});
+        document.getElementById('linha-irrf').classList.remove('hidden');
+    }
+    
     
     document.getElementById('liquido-pagar').textContent = calcularLiquido().toLocaleString('pt-br', {minimumFractionDigits: 2});
     
