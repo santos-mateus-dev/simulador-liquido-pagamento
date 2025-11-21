@@ -96,8 +96,13 @@ formulario.addEventListener('submit', event => {
 
     // CAPTAÇÃO DE DADOS DO FORMULÁRIO
     const salario = document.getElementById('salario-bruto').value;
+    const salarioBruto = parseFloat(salario);
+    const valorBeneficios = document.getElementById('beneficios').value;
+    const beneficios = parseFloat(valorBeneficios);
     const descontos = document.getElementById('descontos').value;
-    const salarioBruto = parseFloat(salario);  
+    const outrosDescontos = parseFloat(descontos);
+    const proventos = (salarioBruto * 1000) + beneficios;
+      
     
     //REMOVE "ESCONDIDO" DA TABELA
     document.getElementById('resultado-container').classList.remove('hidden');
@@ -113,13 +118,15 @@ formulario.addEventListener('submit', event => {
         let salarioBruto = parseFloat(document.getElementById('salario-bruto').value);
         salarioBruto *= 1000;
     
-        return salarioBruto - totalDescontos;
+        return salarioBruto + beneficios - totalDescontos;
     }
 
     // INCLUSÃO DE INFORMAÇÕES NA TABELA
     document.getElementById('salario').textContent = (salarioBruto * 1000).toLocaleString('pt-br', {minimumFractionDigits: 2});
 
-    document.getElementById('total-proventos').textContent = (salarioBruto * 1000).toLocaleString('pt-br', {minimumFractionDigits: 2});
+    document.getElementById('bonus').textContent = beneficios.toLocaleString('pt-br', {minimumFractionDigits: 2});
+
+    document.getElementById('total-proventos').textContent = proventos.toLocaleString('pt-br', {minimumFractionDigits: 2});
     /*document.getElementById('tabela-descontos').textContent = parseFloat(descontos).toLocaleString('pt-br', {minimumFractionDigits: 2});*/
     
     document.getElementById('total-descontos').textContent = totalDescontos.toLocaleString('pt-br', {minimumFractionDigits: 2});
@@ -132,6 +139,8 @@ formulario.addEventListener('submit', event => {
         document.getElementById('valor-irrf').textContent = calcularIrrf().toLocaleString('pt-br', {minimumFractionDigits: 2});
         document.getElementById('linha-irrf').classList.remove('hidden');
     }
+
+    document.getElementById('outros-descontos').textContent = outrosDescontos.toLocaleString('pt-br', {minimumFractionDigits: 2});
     
     
     document.getElementById('liquido-pagar').textContent = calcularLiquido().toLocaleString('pt-br', {minimumFractionDigits: 2});

@@ -43,6 +43,17 @@
                     </div>
                     <div class="caixa-entrada">
                         <label>
+                            Benefícios
+                        </label>
+                        <div class="campo-entrada">
+                            <span>
+                                R$
+                            </span>  
+                            <input type="text" inputmode="numeric" id="beneficios" name="beneficios" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="caixa-entrada">
+                        <label>
                             Descontos Gerais
                         </label>
                         <div class="campo-entrada">
@@ -77,7 +88,7 @@
             <div class="grupo">
                 <h3 class="titulo-proventos">Proventos <span id="total-proventos"></span></h3>
                 <p><strong>Salário Bruto: </strong><span id="salario"></span></p>
-                <p><strong>Benefícios: </strong><span id="beneficios"></span></p>
+                <p><strong>Benefícios: </strong><span id="bonus"></span></p>
             </div>
 
             <div class="grupo">
@@ -151,6 +162,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" ></script>
         <script>
             $('#salario-bruto').mask('000.000.000.000.000,00', {reverse: true});
+            $('#beneficios').mask('000.000.000.000.000,00', {reverse: true});
             $('#descontos').mask('000.000.000.000.000,00', {reverse: true});
         </script>
     </main>
