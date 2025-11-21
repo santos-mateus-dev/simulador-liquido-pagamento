@@ -161,6 +161,10 @@ main {
     margin-right: 20px;
 }
 
+#resultado-container {
+  padding: 0 15% 0 50%;
+}
+
 h2 {
     font-size: 22px;
     margin-bottom: 10px;
@@ -182,8 +186,11 @@ h2 {
     font-weight: bold;
 }
 
+.liquido-pagamento{
+    color: rgba(24, 154, 180, 1);
+}
+
 .liquido-pagar {
-    background-color: rgba(24, 154, 180, 1);
     padding: 6px 10px;
     font-size: 18px;
     font-weight: bold;
@@ -303,32 +310,12 @@ footer {
     border-radius: 2.5rem;
   }
 
-  table {
-    font-size: .7rem;
-
+  #resultado-container {
+    padding: 0 0 0 10%;
   }
 
-  #titulos {
-    font-size: 0.7rem;
-  }
-  
-  thead,
-  tfoot {
-    font-size: .7rem;
-  }
-  
-  th, td { 
-    color: #d9d9d9;
-    border: 1px solid rgb(160 160 160);
-    padding: 8px 10px;
-  }
-  
-  tfoot th, 
-  tfoot td {
-    text-align: right;
-    color: #d9d9d9;
-    font-size: 0.8rem;
-    background-color: #01949a;
+  .liquido-pagamento {
+    width: 70%;
   }
   
 }
@@ -418,7 +405,4 @@ footer {
     display: none;
   }
 
-  table {
-    margin: 0 2%;
-  }
 }
