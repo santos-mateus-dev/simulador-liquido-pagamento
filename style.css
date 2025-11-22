@@ -33,10 +33,6 @@ a {
   font-family: sans-serif
 }
 
-a:hover {
-  color: #db1f48;
-}
-
 #menu {
   display: flex;
   list-style: none;
@@ -57,26 +53,33 @@ a:hover {
   border-bottom: 2px solid rgba(0, 0, 0, .05);
 }
 
+#menu a:hover{
+  color: #d9d9d9;
+  transition: color 0.5s ease;
+}
+
 main {
   background-color: #1e1e1e;
   color: #fff;
   text-align: left;
-  padding: 20px;
+  padding: 130px 20px;
   overflow-y: auto;
   height: calc(100vh - 130px);
 }
 
 .itens {
   display: flex;
-  margin: 0 180px;
-  align-items: top;
   justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 120px;
+  
 }
 
 #formulario {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  gap: 20px;
 }
 
 #titulo {
@@ -88,6 +91,7 @@ main {
   font-weight: 500;
   font-size: 1rem;
   color: #d9d9d9;
+  margin-bottom: 6px;
 }
 
 .campo-entrada {
@@ -98,7 +102,8 @@ main {
   padding: 0.3rem;
   border-radius: 3px;
   margin-top: 3px;
-  width: 70%;
+  width: 280px;
+  max-width: 100%;
 }
 
 .campo-entrada span {
@@ -136,11 +141,13 @@ main {
   padding: 0.5rem 0;
   border-radius: 3px;
   cursor: pointer;
-  width: 35%;
+  width: 37%;
 }
 
 #calcular:hover{
-  background-color: #01949a;
+  background-color: #fff;
+  color: #db1f48;
+  transition: color 0.5s ease;
 }
 
 #img {
@@ -162,7 +169,8 @@ main {
 }
 
 #resultado-container {
-  padding: 0 15% 0 50%;
+ margin-left: 60px;
+ padding: 0;
 }
 
 h2 {
